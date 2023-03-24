@@ -15,7 +15,7 @@ Commands
 ```bash
     # clone github repo
     $ git clone https://github.com/dphoeniixx/mrf-practice-app-web
-    $ cd express-blog-api
+    $ cd mrf-practice-app-web
     $ cp .env.example .env
 
 
