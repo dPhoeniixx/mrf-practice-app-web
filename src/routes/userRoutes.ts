@@ -14,8 +14,9 @@ userRouter.post(
   createUserDataValidator,
   AuthController.registerUser
 );
+
 userRouter.post("/login", loginUserDataValidator, AuthController.loginUser);
 userRouter.get("/profile", verifyUserToken, AuthController.getUser);
-userRouter.get("/list", verifyUserToken, UserController.getAllUsers);
+userRouter.post("/update", verifyUserToken, UserController.updateUser);
 
 export default userRouter;

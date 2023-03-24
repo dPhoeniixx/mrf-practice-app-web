@@ -1,3 +1,5 @@
+Original Repo: https://github.com/bhimrazy/express-blog-api
+
 <p align="center">
   <img height="400" width="auto" src="https://user-images.githubusercontent.com/46085301/196043714-8ac5ad0d-1286-4ab6-aa6b-c1e4cdccf3d0.png">
 </p>
@@ -12,14 +14,17 @@ Commands
 
 ```bash
     # clone github repo
-    $ git clone https://github.com/bhimrazy/express-blog-api
+    $ git clone https://github.com/dphoeniixx/mrf-practice-app-web
     $ cd express-blog-api
     $ cp .env.example .env
+
 
     # Run without using docker
     # SET DATABASE_URL
     $ npm install
     $ npm run dev
+    
+
 
     # Run with docker
     # start containers

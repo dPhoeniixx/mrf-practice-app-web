@@ -95,7 +95,7 @@ export const AuthController = {
   /* get user profile */
   getUser: async (req: profileRequest, res: Response) => {
     const user = await User.findOne({
-      email: req.user.email,
+      _id: req.user._id,
     });
     res.json({
       status: "success",

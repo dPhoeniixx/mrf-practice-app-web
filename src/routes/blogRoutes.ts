@@ -16,11 +16,11 @@ const blogRouter = express.Router();
 
 blogRouter
   .route("/")
-  .get(getAllBlogs)
-  .post(verifyUserToken, createBlogDataValidator, createBlog);
+  .get(getAllBlogs);
+//  .post(verifyUserToken, createBlogDataValidator, createBlog);
 blogRouter
   .route("/:id")
-  .get(getBlogById)
-  .put(verifyUserToken, updateBlogDataValidator, updateBlog)
-  .delete(verifyUserToken, deleteBlog);
+  .get(getBlogById);
+//  .put(verifyUserToken, updateBlogDataValidator, updateBlog)
+//  .delete(verifyUserToken, deleteBlog);
 export default blogRouter;

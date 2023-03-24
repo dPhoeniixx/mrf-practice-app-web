@@ -10,10 +10,14 @@ import express, {
 
 import morgan from "morgan";
 import cors from "cors";
+import https from "https";
+import fs from "fs";
 import { connectDB } from "./src/configs/db";
 import apiRouter from "./src/routes/api";
+
 // Constants
-const PORT = process.env.PORT || 3000;
+const HTTP_PORT   = process.env.PORT || 8080;
+const HTTPS_PORT  = process.env.PORT || 8443;
 
 // Connect to database
 connectDB();
@@ -30,9 +34,12 @@ app.use(express.static("public"));
 // logger
 app.use(morgan("combined"));
 
+
 // API Routes
 app.get("/", (req: Request, res: Response) => {
-  res.status(200).send({ message: "Welcome to your Express App API." });
+  const doc = `GET /       - Documentation
+GET /api/v1 - API v1 documentation`;
+  res.status(200).set("Content-Type", "text/plain").send(doc);
 });
 
 app.use("/api/v1/", apiRouter);
@@ -46,8 +53,21 @@ app.use(((err, req, res, next) => {
   return;
 }) as ErrorRequestHandler);
 
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
+const key = fs.readFileSync('src/selfsigned.key');
+const cert = fs.readFileSync('src/selfsigned.crt');
+const options = {
+  key: key,
+  cert: cert
+};
+
+const server = https.createServer(options, app);
+
+app.listen(HTTP_PORT, () => {
+  console.log(`⚡️[server]: Plain Server is running at ${HTTP_PORT}`);
 });
 
-export default app;
+server.listen(HTTPS_PORT, () => {
+  console.log(`⚡️[server]: SSL Server is running at ${HTTP_PORT}`);
+});
+
+export default server;
